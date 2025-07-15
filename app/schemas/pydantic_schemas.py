@@ -1,6 +1,7 @@
 from pydantic import BaseModel, ConfigDict
 from typing import List, Optional, Dict
 from datetime import datetime
+import math
 
 class CharacterInfo(BaseModel):
     """角色信息模型"""
@@ -64,3 +65,10 @@ class DialogueResponse(BaseModel):
     answer: str  # AI的回答
     response_time: float  # 响应时间（秒）
     created_at: datetime  # 创建时间
+class ScriptListResponse(BaseModel):
+    """剧本列表响应模型"""
+    scripts: List[Script]  # 剧本列表
+    total: int
+    page: int
+    page_size: int
+    total_pages:int 

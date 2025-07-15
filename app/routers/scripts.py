@@ -1,9 +1,9 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException,Query
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models import database_models as models
 from app.schemas import pydantic_schemas as schemas
-
+import math
 # 创建剧本管理路由器
 router = APIRouter(
     prefix="/api/v1/scripts",  # 路由前缀
@@ -11,16 +11,33 @@ router = APIRouter(
 )
 
 @router.get("", response_model=schemas.ScriptListResponse)
-def get_scripts(db: Session = Depends(get_db)):
+def get_scripts(db: Session = Depends(get_db)
+               ,page: int = Query(1, ge=1,description="页码，从1开始")
+                , page_size: int = Query(8, ge=0, le=100,description="每页数量")):
     """
     获取所有剧本列表
     
     Returns:
         ScriptListResponse: 包含所有剧本信息的响应对象
     """
-    # 从数据库查询所有剧本
-    scripts = db.query(models.Script).all()
-    return {"scripts": scripts}
+    # 计算分页参数
+    offset = (page - 1) * page_size
+    #获取单页的剧本数据
+    scripts_query=db.query(models.Script)
+    scripts=scripts_query.offset(offset).limit(page_size).all()
+    # 从数据库查询所有剧本总数
+    total_count = db.query(models.Script).count()
+    #计算页面总数
+    total_pages = math.ceil(total_count / page_size) // page_size
+    # 5. 按照 ScriptListResponse 格式返回
+    return {
+        "scripts": scripts,
+        "total": total_count,
+        "page": page,
+        "page_size": page_size,
+        "total_pages": total_pages
+    }
+
 
 @router.get("/{script_id}", response_model=schemas.Script)
 def get_script_details(script_id: str, db: Session = Depends(get_db)):
