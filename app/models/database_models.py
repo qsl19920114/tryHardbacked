@@ -1,4 +1,5 @@
-from sqlalchemy import Column, String, Integer, DateTime, JSON
+from sqlalchemy import Column, String, Integer, DateTime, JSON, Text, ForeignKey
+from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from app.database import Base
 
@@ -24,17 +25,39 @@ class Script(Base):
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())  # 更新时间
 
 class GameSession(Base):
-    """
-    游戏会话数据模型
-    记录用户的游戏进度、对话历史和游戏状态
-    """
     __tablename__ = "game_sessions"
 
-    session_id = Column(String, primary_key=True, index=True)  # 会话唯一标识符
-    script_id = Column(String, index=True)  # 关联的剧本ID
-    user_id = Column(String, nullable=True)  # 用户ID（可选）
-    current_scene_index = Column(Integer, default=0)  # 当前场景索引
-    dialogue_history = Column(JSON, default=[])  # 对话历史记录，存储为JSON格式
-    game_state = Column(JSON, default={})  # 游戏状态数据，存储为JSON格式
-    created_at = Column(DateTime(timezone=True), server_default=func.now())  # 创建时间
-    updated_at = Column(DateTime(timezone=True), onupdate=func.now())  # 更新时间
+    session_id = Column(String, primary_key=True, index=True)
+    script_id = Column(String, index=True)
+    user_id = Column(String, nullable=True, index=True)
+    current_scene_index = Column(Integer, default=0)
+    game_state = Column(JSON, default={})
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+    
+    # 建立与 DialogueEntry 的一对多关系
+    # 当我们访问一个 GameSession 对象的 .dialogue_history 属性时,
+    # SQLAlchemy 会自动查询所有关联的 DialogueEntry 记录，并按时间排序。
+    dialogue_history = relationship(
+        "DialogueEntry",
+        back_populates="session",
+        order_by="DialogueEntry.timestamp",
+        cascade="all, delete-orphan" # 当删除一个session时，自动删除所有关联的对话
+    )
+#新增的DialogueEntry 模型
+class DialogueEntry(Base):
+    __tablename__ = "dialogue_entries"
+
+    id = Column(Integer, primary_key=True, index=True)
+    
+    # 定义外键，指向 game_sessions 表的 session_id 字段
+    session_id = Column(String, ForeignKey("game_sessions.session_id"), nullable=False, index=True)
+    
+    character_id = Column(String, nullable=False)
+    role = Column(String, nullable=False) # "player" 或 "ai"
+    content = Column(Text, nullable=False)
+    timestamp = Column(DateTime(timezone=True), server_default=func.now())
+    diaglogue_metadata = Column(JSON, nullable=True)
+    
+    # 建立与 GameSession 的多对一关系
+    session = relationship("GameSession", back_populates="dialogue_history")
