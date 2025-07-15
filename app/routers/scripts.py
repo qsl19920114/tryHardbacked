@@ -1,35 +1,58 @@
-from fastapi import APIRouter, Depends, HTTPException,Query
+import math
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
+from sqlalchemy import or_ # 1. 导入 or_ 用于实现多字段搜索
+from typing import Optional, List # 导入 Optional
+
 from app.database import get_db
 from app.models import database_models as models
 from app.schemas import pydantic_schemas as schemas
-import math
-# 创建剧本管理路由器
+
 router = APIRouter(
-    prefix="/api/v1/scripts",  # 路由前缀
-    tags=["Scripts"],  # 在 API 文档中的标签分组
+    prefix="/api/v1/scripts",
+    tags=["Scripts"],
 )
 
 @router.get("", response_model=schemas.ScriptListResponse)
-def get_scripts(db: Session = Depends(get_db)
-               ,page: int = Query(1, ge=1,description="页码，从1开始")
-                , page_size: int = Query(8, ge=0, le=100,description="每页数量")):
-    """
-    获取所有剧本列表
+def get_scripts(
+    db: Session = Depends(get_db),
+    page: int = Query(1, gt=0, description="页码，从1开始"),
+    page_size: int = Query(8, gt=0, le=100, description="每页数量"),
+    # 2. 添加 category 和 search 参数
+    category: Optional[str] = Query(None, description="按分类筛选，例如：Mystery, Horror"),
+    search: Optional[str] = Query(None, description="搜索关键词，将匹配标题和描述")
+):
+    # 3. 开始构建基础查询
+    scripts_query = db.query(models.Script)
     
-    Returns:
-        ScriptListResponse: 包含所有剧本信息的响应对象
-    """
-    # 计算分页参数
+    # 4. 根据参数动态添加过滤条件
+    if category:
+        # 如果提供了 category 参数，添加分类过滤
+        scripts_query = scripts_query.filter(models.Script.category == category)
+        
+    if search:
+        # 如果提供了 search 参数，添加搜索过滤
+        # 使用 or_ 来同时搜索 title 和 description 字段
+        # 使用 ilike 来进行不区分大小写的模糊匹配
+        search_term = f"%{search}%"
+        scripts_query = scripts_query.filter(
+            or_(
+                models.Script.title.ilike(search_term),
+                models.Script.description.ilike(search_term)
+            )
+        )
+    
+    # 5. 在过滤后的查询上计算总数 (非常重要)
+    total_count = scripts_query.count()
+    
+    # 6. 应用分页
     offset = (page - 1) * page_size
-    #获取单页的剧本数据
-    scripts_query=db.query(models.Script)
-    scripts=scripts_query.offset(offset).limit(page_size).all()
-    # 从数据库查询所有剧本总数
-    total_count = db.query(models.Script).count()
-    #计算页面总数
-    total_pages = math.ceil(total_count / page_size) // page_size
-    # 5. 按照 ScriptListResponse 格式返回
+    scripts = scripts_query.offset(offset).limit(page_size).all()
+    
+    # 计算总页数
+    total_pages = math.ceil(total_count / page_size)
+    
+    # 按照 ScriptListResponse 格式返回
     return {
         "scripts": scripts,
         "total": total_count,
@@ -37,6 +60,8 @@ def get_scripts(db: Session = Depends(get_db)
         "page_size": page_size,
         "total_pages": total_pages
     }
+
+
 
 
 @router.get("/{script_id}", response_model=schemas.Script)

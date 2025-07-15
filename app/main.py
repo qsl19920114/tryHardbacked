@@ -16,13 +16,16 @@ app = FastAPI(
 )
 
 # 配置跨域资源共享（CORS）中间件
+origins = [
+    "http://localhost:3000","http://localhost:3001"
+]
 # 允许前端应用从不同域名访问 API
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 允许所有域名访问（生产环境应设置具体域名）
-    allow_credentials=True,  # 允许携带凭证
-    allow_methods=["*"],  # 允许所有 HTTP 方法
-    allow_headers=["*"],  # 允许所有请求头
+    allow_origins=origins,  # 允许访问的源
+    allow_credentials=True,  # 支持 cookie
+    allow_methods=["*"],  # 允许所有方法
+    allow_headers=["*"],  # 允许所有标头
 )
 
 # 注册路由模块
