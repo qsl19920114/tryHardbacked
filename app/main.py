@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine
 from app.models import database_models
 from app.routers import scripts, game_sessions, ai_dialogue
-
+from fastapi.staticfiles import StaticFiles
 # 创建数据库表（如果不存在）
 database_models.Base.metadata.create_all(bind=engine)
 
@@ -32,7 +32,7 @@ app.add_middleware(
 app.include_router(scripts.router)  # 剧本管理相关路由
 app.include_router(game_sessions.router)  # 游戏会话相关路由
 app.include_router(ai_dialogue.router)  # AI对话相关路由
-
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
 @app.get("/", tags=["Root"])
 def read_root():
     """

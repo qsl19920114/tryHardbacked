@@ -1,6 +1,7 @@
 from sqlalchemy import Column, String, Integer, DateTime, JSON, Text, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
+from sqlalchemy import event
 from app.database import Base
 
 class Script(Base):
@@ -23,6 +24,17 @@ class Script(Base):
     characters = Column(JSON)  # 角色信息列表，存储为JSON格式
     created_at = Column(DateTime(timezone=True), server_default=func.now())  # 创建时间
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())  # 更新时间
+
+# SQLAlchemy event listener to auto-generate cover path
+@event.listens_for(Script, 'before_insert')
+@event.listens_for(Script, 'before_update')
+def auto_generate_cover_path(mapper, connection, target):
+    """
+    自动生成封面图片路径
+    在插入或更新Script记录之前，自动设置cover字段为 /static/images/{id}.jpg
+    """
+    if target.id:
+        target.cover = f"/static/images/{target.id}.jpg"
 
 class GameSession(Base):
     __tablename__ = "game_sessions"

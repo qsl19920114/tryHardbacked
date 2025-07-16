@@ -105,11 +105,10 @@ def create_script(script_data: schemas.ScriptBase, db: Session = Depends(get_db)
     if existing_script:
         raise HTTPException(status_code=400, detail="Script with this ID already exists")
 
-    # 创建新的剧本对象
+    # 创建新的剧本对象（cover字段会通过SQLAlchemy事件监听器自动生成）
     new_script = models.Script(
         id=script_data.id,
         title=script_data.title,
-        cover=script_data.cover,
         category=script_data.category,
         tags=script_data.tags,
         players=script_data.players,

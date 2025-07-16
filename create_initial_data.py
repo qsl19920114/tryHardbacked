@@ -16,7 +16,6 @@ if db.query(Script).first() is None:
         {
             "id": "1",
             "title": "午夜图书馆",
-            "cover": "/placeholder.svg?height=300&width=200",
             "category": "Mystery",
             "tags": ["悬疑", "本格", "微恐"],
             "players": "6人 (3男3女)",
@@ -33,7 +32,6 @@ if db.query(Script).first() is None:
         {
             "id": "2",
             "title": "雾都疑案",
-            "cover": "/placeholder.svg?height=300&width=200",
             "category": "Hardcore",
             "tags": ["硬核", "推理", "维多利亚"],
             "players": "7人 (4男3女)",
@@ -49,7 +47,6 @@ if db.query(Script).first() is None:
         {
             "id": "3",
             "title": "校园七不思议",
-            "cover": "/placeholder.svg?height=300&width=200",
             "category": "Horror",
             "tags": ["恐怖", "校园", "灵异"],
             "players": "5人 (2男3女)",
@@ -65,7 +62,6 @@ if db.query(Script).first() is None:
         {
             "id": "4",
             "title": "豪门恩怨",
-            "cover": "/placeholder.svg?height=300&width=200",
             "category": "Emotional",
             "tags": ["情感", "家族", "商战"],
             "players": "8人 (4男4女)",
@@ -81,7 +77,6 @@ if db.query(Script).first() is None:
         {
             "id": "5",
             "title": "太空站危机",
-            "cover": "/placeholder.svg?height=300&width=200",
             "category": "Mystery",
             "tags": ["科幻", "太空", "生存"],
             "players": "6人 (3男3女)",
@@ -97,7 +92,6 @@ if db.query(Script).first() is None:
         {
             "id": "6",
             "title": "古堡之谜",
-            "cover": "/placeholder.svg?height=300&width=200",
             "category": "Joyful",
             "tags": ["欢乐", "古堡", "轻松"],
             "players": "6人 (3男3女)",
@@ -113,7 +107,6 @@ if db.query(Script).first() is None:
         {
             "id": "7",
             "title": "深海实验室",
-            "cover": "/placeholder.svg?height=300&width=200",
             "category": "Horror",
             "tags": ["恐怖", "深海", "实验"],
             "players": "7人 (4男3女)",
@@ -129,7 +122,6 @@ if db.query(Script).first() is None:
         {
             "id": "8",
             "title": "时光咖啡馆",
-            "cover": "/placeholder.svg?height=300&width=200",
             "category": "Emotional",
             "tags": ["情感", "时光", "温馨"],
             "players": "5人 (2男3女)",
@@ -146,7 +138,6 @@ if db.query(Script).first() is None:
         {
             "id": "9",
             "title": "江户怪谈",
-            "cover": "/placeholder.svg?height=300&width=200",
             "category": "Horror",
             "tags": ["恐怖", "江户", "妖怪"],
             "players": "6人 (3男3女)",
@@ -164,7 +155,6 @@ if db.query(Script).first() is None:
         {
             "id": "10",
             "title": "赛博朋克2099",
-            "cover": "/placeholder.svg?height=300&width=200",
             "category": "Mystery",
             "tags": ["科幻", "赛博朋克", "未来"],
             "players": "7人 (4男3女)",
@@ -183,7 +173,6 @@ if db.query(Script).first() is None:
         {
             "id": "11",
             "title": "民国往事",
-            "cover": "/placeholder.svg?height=300&width=200",
             "category": "Emotional",
             "tags": ["民国", "情感", "历史"],
             "players": "6人 (3男3女)",
@@ -201,7 +190,6 @@ if db.query(Script).first() is None:
         {
             "id": "12",
             "title": "魔法学院谜案",
-            "cover": "/placeholder.svg?height=300&width=200",
             "category": "Joyful",
             "tags": ["魔法", "学院", "奇幻"],
             "players": "8人 (4男4女)",
@@ -220,7 +208,6 @@ if db.query(Script).first() is None:
         {
             "id": "13",
             "title": "末日求生",
-            "cover": "/placeholder.svg?height=300&width=200",
             "category": "Hardcore",
             "tags": ["末日", "生存", "合作"],
             "players": "6人 (3男3女)",
@@ -238,7 +225,6 @@ if db.query(Script).first() is None:
         {
             "id": "14",
             "title": "古代宫廷秘史",
-            "cover": "/placeholder.svg?height=300&width=200",
             "category": "Mystery",
             "tags": ["古代", "宫廷", "权谋"],
             "players": "7人 (4男3女)",
@@ -257,7 +243,6 @@ if db.query(Script).first() is None:
         {
             "id": "15",
             "title": "温泉旅馆杀人事件",
-            "cover": "/placeholder.svg?height=300&width=200",
             "category": "Mystery",
             "tags": ["温泉", "旅馆", "本格推理"],
             "players": "8人 (4男4女)",
@@ -277,7 +262,6 @@ if db.query(Script).first() is None:
         {
             "id": "16",
             "title": "青春校园祭",
-            "cover": "/placeholder.svg?height=300&width=200",
             "category": "Joyful",
             "tags": ["青春", "校园", "友情"],
             "players": "6人 (3男3女)",
@@ -295,7 +279,6 @@ if db.query(Script).first() is None:
         {
             "id": "17",
             "title": "西部荒野传说",
-            "cover": "/placeholder.svg?height=300&width=200",
             "category": "Hardcore",
             "tags": ["西部", "牛仔", "冒险"],
             "players": "7人 (5男2女)",
@@ -314,7 +297,6 @@ if db.query(Script).first() is None:
         {
             "id": "18",
             "title": "都市传说调查团",
-            "cover": "/placeholder.svg?height=300&width=200",
             "category": "Horror",
             "tags": ["都市传说", "调查", "超自然"],
             "players": "5人 (2男3女)",
@@ -332,7 +314,6 @@ if db.query(Script).first() is None:
         {
             "id": "19",
             "title": "星际殖民地",
-            "cover": "/placeholder.svg?height=300&width=200",
             "category": "Mystery",
             "tags": ["科幻", "太空", "殖民"],
             "players": "6人 (3男3女)",
@@ -350,7 +331,6 @@ if db.query(Script).first() is None:
         {
             "id": "20",
             "title": "音乐盒的秘密",
-            "cover": "/placeholder.svg?height=300&width=200",
             "category": "Emotional",
             "tags": ["音乐", "回忆", "治愈"],
             "players": "4人 (2男2女)",
@@ -367,12 +347,11 @@ if db.query(Script).first() is None:
         }
     ]
 
-    # 将所有剧本数据插入数据库
+    # 将所有剧本数据插入数据库（cover字段会通过SQLAlchemy事件监听器自动生成）
     for script_data in scripts_data:
         script = Script(
             id=script_data["id"],
             title=script_data["title"],
-            cover=script_data["cover"],
             category=script_data["category"],
             tags=script_data["tags"],
             players=script_data["players"],

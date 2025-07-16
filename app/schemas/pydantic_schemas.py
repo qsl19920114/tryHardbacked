@@ -10,10 +10,9 @@ class CharacterInfo(BaseModel):
     description: str  # 角色描述
 
 class ScriptBase(BaseModel):
-    """剧本基础信息模型"""
+    """剧本基础信息模型（用于创建剧本，不包含cover字段，会自动生成）"""
     id: str  # 剧本唯一标识符
     title: str  # 剧本标题
-    cover: str  # 封面图片路径
     category: str  # 剧本分类
     tags: List[str]  # 标签列表
     players: str  # 玩家人数描述
@@ -24,10 +23,11 @@ class ScriptBase(BaseModel):
     characters: List[CharacterInfo]  # 角色信息列表
 
 class Script(ScriptBase):
-    """完整的剧本信息模型（包含时间戳）"""
+    """完整的剧本信息模型（包含时间戳和自动生成的cover字段）"""
+    cover: str  # 封面图片路径（自动生成）
     created_at: datetime  # 创建时间
     updated_at: Optional[datetime] = None  # 更新时间（可选）
-    
+
     model_config = ConfigDict(from_attributes=True)  # 允许从数据库对象创建
 
 class ScriptListResponse(BaseModel):
