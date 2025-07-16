@@ -5,3 +5,12 @@ pydantic==2.5.0
 requests==2.31.0
 python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
+# LangChain dependencies for game engine
+langchain>=0.3.26
+langgraph>=0.5.3
+langchain-core>=0.3.68
+langchain-community>=0.3.27
+# Testing dependencies
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+pytest-mock>=3.10.0
