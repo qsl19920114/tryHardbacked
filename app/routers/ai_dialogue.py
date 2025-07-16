@@ -25,6 +25,7 @@ def format_history_for_prompt(history: list[models.DialogueEntry]) -> str:
     Returns:
         str: 格式化后的对话文本
     """
+    
     prompt_lines = []
     for entry in history:
         role_name = "玩家" if entry.role == 'player' else f"角色 {entry.character_id}"
