@@ -1,7 +1,13 @@
-from sqlalchemy import Column, String, Integer, DateTime, JSON, Text, ForeignKey
+from sqlalchemy import Column, String, Integer, DateTime, JSON, Text, ForeignKey, Enum
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 from app.database import Base
+import enum
+
+class SceneType(enum.Enum):
+    """场景类型枚举"""
+    STORY = "story"  # 故事模式 - 视觉小说式推进
+    INVESTIGATION = "investigation"  # 调查模式 - 自由问答
 
 class Script(Base):
     """
@@ -23,6 +29,14 @@ class Script(Base):
     characters = Column(JSON)  # 角色信息列表，存储为JSON格式
     created_at = Column(DateTime(timezone=True), server_default=func.now())  # 创建时间
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())  # 更新时间
+
+    # 建立与 ScriptScene 的一对多关系
+    scenes = relationship(
+        "ScriptScene",
+        back_populates="script",
+        order_by="ScriptScene.scene_index",
+        cascade="all, delete-orphan"  # 当删除剧本时，自动删除所有关联的场景
+    )
 
 class GameSession(Base):
     __tablename__ = "game_sessions"
@@ -61,3 +75,24 @@ class DialogueEntry(Base):
     
     # 建立与 GameSession 的多对一关系
     session = relationship("GameSession", back_populates="dialogue_history")
+
+class ScriptScene(Base):
+    """
+    剧本场景数据模型
+    存储剧本中的各个场景信息，支持故事模式和调查模式
+    """
+    __tablename__ = "script_scenes"
+
+    id = Column(Integer, primary_key=True, index=True)  # 场景唯一标识符
+    script_id = Column(String, ForeignKey("scripts.id"), nullable=False, index=True)  # 关联的剧本ID
+    scene_index = Column(Integer, nullable=False)  # 场景在剧本中的顺序索引
+    scene_type = Column(Enum(SceneType), nullable=False)  # 场景类型：story 或 investigation
+    title = Column(String, nullable=False)  # 场景标题
+    description = Column(Text, nullable=True)  # 场景描述
+    dify_workflow_id = Column(String, nullable=True)  # 对应的Dify工作流ID
+    scene_config = Column(JSON, nullable=True)  # 场景配置数据（JSON格式）
+    created_at = Column(DateTime(timezone=True), server_default=func.now())  # 创建时间
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now())  # 更新时间
+
+    # 建立与 Script 的多对一关系
+    script = relationship("Script", back_populates="scenes")

@@ -1,0 +1,521 @@
+{
+  "script_id": "1",
+  "script_title": "午夜图书馆",
+  "scenes": [
+    {
+      "scene_index": 0,
+      "scene_type": "story",
+      "title": "深夜的图书馆",
+      "description": "故事开始，介绍背景和角色。古老的图书馆在月光下显得格外神秘",
+      "dify_workflow_id": "story_intro_workflow",
+      "scene_config": {
+        "background_image": "/images/library_night.jpg",
+        "background_music": "/audio/mysterious_night.mp3",
+        "characters_present": ["图书管理员"],
+        "mood": "mysterious"
+      }
+    },
+    {
+      "scene_index": 1,
+      "scene_type": "story",
+      "title": "访客的到来",
+      "description": "几位访客陆续到达图书馆，每个人都有自己的目的",
+      "dify_workflow_id": "story_visitors_arrival_workflow",
+      "scene_config": {
+        "background_image": "/images/library_entrance.jpg",
+        "background_music": "/audio/mysterious_night.mp3",
+        "characters_present": ["文学教授", "神秘访客", "年轻学者"],
+        "mood": "mysterious"
+      }
+    },
+    {
+      "scene_index": 2,
+      "scene_type": "story",
+      "title": "图书馆的历史",
+      "description": "管理员向访客们介绍这座古老图书馆的悠久历史和传说",
+      "dify_workflow_id": "story_library_history_workflow",
+      "scene_config": {
+        "background_image": "/images/library_history.jpg",
+        "background_music": "/audio/historical_theme.mp3",
+        "characters_present": ["图书管理员", "文学教授"],
+        "mood": "informative"
+      }
+    },
+    {
+      "scene_index": 3,
+      "scene_type": "investigation",
+      "title": "初步探索",
+      "description": "访客们开始在图书馆中自由探索，寻找感兴趣的书籍和线索",
+      "dify_workflow_id": "investigation_exploration_workflow",
+      "scene_config": {
+        "background_image": "/images/library_exploration.jpg",
+        "background_music": "/audio/exploration_theme.mp3",
+        "available_characters": [
+          {
+            "character_id": "librarian_ai",
+            "name": "图书管理员AI",
+            "description": "知识渊博的图书馆管理员，对馆藏了如指掌",
+            "dify_workflow_id": "librarian_character_workflow"
+          },
+          {
+            "character_id": "professor_ai",
+            "name": "文学教授AI",
+            "description": "优雅的中年教授，对古籍情有独钟",
+            "dify_workflow_id": "professor_character_workflow"
+          },
+          {
+            "character_id": "scholar_ai",
+            "name": "年轻学者AI",
+            "description": "充满好奇心的年轻研究者",
+            "dify_workflow_id": "scholar_character_workflow"
+          }
+        ],
+        "investigation_hints": [
+          "询问图书馆的特殊藏书",
+          "了解管理员的日常工作",
+          "探索图书馆的隐秘角落"
+        ],
+        "mood": "curious"
+      }
+    },
+    {
+      "scene_index": 4,
+      "scene_type": "story",
+      "title": "异常的发现",
+      "description": "访客们在探索中发现了一些不寻常的现象和线索",
+      "dify_workflow_id": "story_strange_discovery_workflow",
+      "scene_config": {
+        "background_image": "/images/library_discovery.jpg",
+        "background_music": "/audio/discovery_theme.mp3",
+        "characters_present": ["神秘访客", "年轻学者"],
+        "mood": "intriguing"
+      }
+    },
+    {
+      "scene_index": 5,
+      "scene_type": "story",
+      "title": "神秘的失踪",
+      "description": "管理员突然神秘失踪，访客们发现情况不对劲",
+      "dify_workflow_id": "story_disappearance_workflow",
+      "scene_config": {
+        "background_image": "/images/library_empty.jpg",
+        "background_music": "/audio/tension.mp3",
+        "characters_present": ["文学教授", "神秘访客", "年轻学者"],
+        "mood": "tense"
+      }
+    },
+    {
+      "scene_index": 6,
+      "scene_type": "investigation",
+      "title": "寻找线索",
+      "description": "访客们开始寻找管理员失踪的线索，调查图书馆的每个角落",
+      "dify_workflow_id": "investigation_clue_search_workflow",
+      "scene_config": {
+        "background_image": "/images/library_search.jpg",
+        "background_music": "/audio/investigation.mp3",
+        "available_characters": [
+          {
+            "character_id": "professor_ai",
+            "name": "文学教授AI",
+            "description": "冷静分析的教授，善于逻辑推理",
+            "dify_workflow_id": "professor_character_workflow"
+          },
+          {
+            "character_id": "visitor_ai",
+            "name": "神秘访客AI",
+            "description": "身份不明但观察敏锐的访客",
+            "dify_workflow_id": "visitor_character_workflow"
+          },
+          {
+            "character_id": "scholar_ai",
+            "name": "年轻学者AI",
+            "description": "年轻但细心的研究者",
+            "dify_workflow_id": "scholar_character_workflow"
+          },
+          {
+            "character_id": "security_ai",
+            "name": "保安AI",
+            "description": "图书馆的夜班保安，了解建筑结构",
+            "dify_workflow_id": "security_character_workflow"
+          }
+        ],
+        "investigation_hints": [
+          "检查管理员的办公室",
+          "询问最后见到管理员的时间",
+          "调查图书馆的安全系统",
+          "寻找可能的逃脱路线"
+        ],
+        "mood": "investigative"
+      }
+    },
+    {
+      "scene_index": 7,
+      "scene_type": "story",
+      "title": "重要发现",
+      "description": "在调查过程中，访客们发现了一个重要的线索",
+      "dify_workflow_id": "story_important_clue_workflow",
+      "scene_config": {
+        "background_image": "/images/library_clue.jpg",
+        "background_music": "/audio/discovery_theme.mp3",
+        "characters_present": ["文学教授", "神秘访客"],
+        "mood": "revealing"
+      }
+    },
+    {
+      "scene_index": 8,
+      "scene_type": "story",
+      "title": "古老的秘密",
+      "description": "发现的线索指向图书馆隐藏的古老秘密",
+      "dify_workflow_id": "story_ancient_secret_workflow",
+      "scene_config": {
+        "background_image": "/images/library_secret.jpg",
+        "background_music": "/audio/mystery_deepens.mp3",
+        "characters_present": ["文学教授"],
+        "mood": "mysterious"
+      }
+    },
+    {
+      "scene_index": 9,
+      "scene_type": "investigation",
+      "title": "深入调查",
+      "description": "基于新发现的线索，访客们进行更深入的调查",
+      "dify_workflow_id": "investigation_deep_dive_workflow",
+      "scene_config": {
+        "background_image": "/images/library_deep_investigation.jpg",
+        "background_music": "/audio/investigation_intense.mp3",
+        "available_characters": [
+          {
+            "character_id": "professor_ai",
+            "name": "文学教授AI",
+            "description": "对古老秘密有深入了解的教授",
+            "dify_workflow_id": "professor_character_workflow"
+          },
+          {
+            "character_id": "visitor_ai",
+            "name": "神秘访客AI",
+            "description": "似乎知道更多内情的神秘人物",
+            "dify_workflow_id": "visitor_character_workflow"
+          },
+          {
+            "character_id": "historian_ai",
+            "name": "历史学家AI",
+            "description": "专门研究图书馆历史的学者",
+            "dify_workflow_id": "historian_character_workflow"
+          },
+          {
+            "character_id": "archivist_ai",
+            "name": "档案管理员AI",
+            "description": "负责古籍档案的专业人员",
+            "dify_workflow_id": "archivist_character_workflow"
+          }
+        ],
+        "investigation_hints": [
+          "研究古老的图书馆记录",
+          "调查历史上的类似事件",
+          "分析神秘访客的真实身份",
+          "探索图书馆的地下结构"
+        ],
+        "mood": "intense"
+      }
+    },
+    {
+      "scene_index": 10,
+      "scene_type": "story",
+      "title": "真相的边缘",
+      "description": "调查逐渐接近真相，但危险也在逼近",
+      "dify_workflow_id": "story_approaching_truth_workflow",
+      "scene_config": {
+        "background_image": "/images/library_danger.jpg",
+        "background_music": "/audio/tension_rising.mp3",
+        "characters_present": ["神秘访客", "年轻学者"],
+        "mood": "dangerous"
+      }
+    },
+    {
+      "scene_index": 11,
+      "scene_type": "story",
+      "title": "意外的转折",
+      "description": "就在真相即将揭晓时，发生了意想不到的转折",
+      "dify_workflow_id": "story_plot_twist_workflow",
+      "scene_config": {
+        "background_image": "/images/library_twist.jpg",
+        "background_music": "/audio/plot_twist.mp3",
+        "characters_present": ["所有角色"],
+        "mood": "shocking"
+      }
+    },
+    {
+      "scene_index": 12,
+      "scene_type": "investigation",
+      "title": "紧急调查",
+      "description": "面对新的转折，访客们必须重新调查和分析",
+      "dify_workflow_id": "investigation_emergency_workflow",
+      "scene_config": {
+        "background_image": "/images/library_emergency.jpg",
+        "background_music": "/audio/urgent_investigation.mp3",
+        "available_characters": [
+          {
+            "character_id": "professor_ai",
+            "name": "文学教授AI",
+            "description": "在危机中保持冷静的教授",
+            "dify_workflow_id": "professor_character_workflow"
+          },
+          {
+            "character_id": "visitor_ai",
+            "name": "神秘访客AI",
+            "description": "可能掌握关键信息的神秘人物",
+            "dify_workflow_id": "visitor_character_workflow"
+          },
+          {
+            "character_id": "detective_ai",
+            "name": "侦探AI",
+            "description": "专业的调查人员，逻辑思维敏锐",
+            "dify_workflow_id": "detective_character_workflow"
+          }
+        ],
+        "investigation_hints": [
+          "重新分析所有证据",
+          "质疑之前的假设",
+          "寻找被忽略的细节",
+          "验证每个人的证词"
+        ],
+        "mood": "urgent"
+      }
+    },
+    {
+      "scene_index": 13,
+      "scene_type": "story",
+      "title": "隐藏的真相",
+      "description": "经过重新调查，一个隐藏已久的真相开始浮现",
+      "dify_workflow_id": "story_hidden_truth_workflow",
+      "scene_config": {
+        "background_image": "/images/library_revelation.jpg",
+        "background_music": "/audio/truth_emerging.mp3",
+        "characters_present": ["文学教授", "神秘访客"],
+        "mood": "revelatory"
+      }
+    },
+    {
+      "scene_index": 14,
+      "scene_type": "story",
+      "title": "过去的阴影",
+      "description": "真相揭示了图书馆过去发生的悲剧事件",
+      "dify_workflow_id": "story_past_tragedy_workflow",
+      "scene_config": {
+        "background_image": "/images/library_past.jpg",
+        "background_music": "/audio/tragic_past.mp3",
+        "characters_present": ["图书管理员", "历史学家"],
+        "mood": "tragic"
+      }
+    },
+    {
+      "scene_index": 15,
+      "scene_type": "investigation",
+      "title": "最后的调查",
+      "description": "在真相大白之前，进行最后一轮关键调查",
+      "dify_workflow_id": "investigation_final_workflow",
+      "scene_config": {
+        "background_image": "/images/library_final_investigation.jpg",
+        "background_music": "/audio/final_investigation.mp3",
+        "available_characters": [
+          {
+            "character_id": "librarian_ai",
+            "name": "图书管理员AI",
+            "description": "掌握最终秘密的管理员",
+            "dify_workflow_id": "librarian_character_workflow"
+          },
+          {
+            "character_id": "professor_ai",
+            "name": "文学教授AI",
+            "description": "已经接近真相的教授",
+            "dify_workflow_id": "professor_character_workflow"
+          },
+          {
+            "character_id": "visitor_ai",
+            "name": "神秘访客AI",
+            "description": "身份即将揭晓的神秘人物",
+            "dify_workflow_id": "visitor_character_workflow"
+          },
+          {
+            "character_id": "witness_ai",
+            "name": "目击者AI",
+            "description": "关键事件的目击者",
+            "dify_workflow_id": "witness_character_workflow"
+          }
+        ],
+        "investigation_hints": [
+          "确认最终的关键证据",
+          "对质所有相关人员",
+          "解开最后的谜团",
+          "准备揭示真相"
+        ],
+        "mood": "climactic"
+      }
+    },
+    {
+      "scene_index": 16,
+      "scene_type": "story",
+      "title": "真相大白",
+      "description": "所有的谜团终于得到解答，真相完全揭晓",
+      "dify_workflow_id": "story_truth_revealed_workflow",
+      "scene_config": {
+        "background_image": "/images/library_truth.jpg",
+        "background_music": "/audio/truth_revealed.mp3",
+        "characters_present": ["所有角色"],
+        "mood": "revelatory"
+      }
+    },
+    {
+      "scene_index": 17,
+      "scene_type": "story",
+      "title": "正义的审判",
+      "description": "真相揭晓后，正义得到伸张",
+      "dify_workflow_id": "story_justice_workflow",
+      "scene_config": {
+        "background_image": "/images/library_justice.jpg",
+        "background_music": "/audio/justice_theme.mp3",
+        "characters_present": ["文学教授", "侦探", "法官"],
+        "mood": "just"
+      }
+    },
+    {
+      "scene_index": 18,
+      "scene_type": "investigation",
+      "title": "后续调查",
+      "description": "案件结束后，对相关细节进行最后的调查和确认",
+      "dify_workflow_id": "investigation_aftermath_workflow",
+      "scene_config": {
+        "background_image": "/images/library_aftermath.jpg",
+        "background_music": "/audio/aftermath_theme.mp3",
+        "available_characters": [
+          {
+            "character_id": "detective_ai",
+            "name": "侦探AI",
+            "description": "负责案件收尾工作的侦探",
+            "dify_workflow_id": "detective_character_workflow"
+          },
+          {
+            "character_id": "reporter_ai",
+            "name": "记者AI",
+            "description": "报道此案的新闻记者",
+            "dify_workflow_id": "reporter_character_workflow"
+          },
+          {
+            "character_id": "psychologist_ai",
+            "name": "心理学家AI",
+            "description": "分析案件心理层面的专家",
+            "dify_workflow_id": "psychologist_character_workflow"
+          }
+        ],
+        "investigation_hints": [
+          "了解案件的社会影响",
+          "分析各方的心理状态",
+          "总结案件的教训",
+          "讨论预防措施"
+        ],
+        "mood": "reflective"
+      }
+    },
+    {
+      "scene_index": 19,
+      "scene_type": "story",
+      "title": "重建与和解",
+      "description": "案件结束后，图书馆开始重建，人们开始和解",
+      "dify_workflow_id": "story_reconciliation_workflow",
+      "scene_config": {
+        "background_image": "/images/library_rebuilding.jpg",
+        "background_music": "/audio/healing_theme.mp3",
+        "characters_present": ["图书管理员", "文学教授", "市民代表"],
+        "mood": "healing"
+      }
+    },
+    {
+      "scene_index": 20,
+      "scene_type": "story",
+      "title": "新的开始",
+      "description": "图书馆重新开放，象征着新的开始",
+      "dify_workflow_id": "story_new_beginning_workflow",
+      "scene_config": {
+        "background_image": "/images/library_reopening.jpg",
+        "background_music": "/audio/new_beginning.mp3",
+        "characters_present": ["新管理员", "访客们", "社区成员"],
+        "mood": "hopeful"
+      }
+    },
+    {
+      "scene_index": 21,
+      "scene_type": "investigation",
+      "title": "回顾与反思",
+      "description": "参与者回顾整个事件，进行深入反思",
+      "dify_workflow_id": "investigation_reflection_workflow",
+      "scene_config": {
+        "background_image": "/images/library_reflection.jpg",
+        "background_music": "/audio/reflection_theme.mp3",
+        "available_characters": [
+          {
+            "character_id": "professor_ai",
+            "name": "文学教授AI",
+            "description": "对整个事件进行学术反思的教授",
+            "dify_workflow_id": "professor_character_workflow"
+          },
+          {
+            "character_id": "philosopher_ai",
+            "name": "哲学家AI",
+            "description": "从哲学角度分析事件的学者",
+            "dify_workflow_id": "philosopher_character_workflow"
+          },
+          {
+            "character_id": "survivor_ai",
+            "name": "幸存者AI",
+            "description": "事件的亲历者和幸存者",
+            "dify_workflow_id": "survivor_character_workflow"
+          }
+        ],
+        "investigation_hints": [
+          "反思事件的深层原因",
+          "讨论人性的复杂性",
+          "探讨社会责任",
+          "思考未来的方向"
+        ],
+        "mood": "contemplative"
+      }
+    },
+    {
+      "scene_index": 22,
+      "scene_type": "story",
+      "title": "传承与记忆",
+      "description": "事件成为历史，但其教训和记忆将被传承",
+      "dify_workflow_id": "story_legacy_workflow",
+      "scene_config": {
+        "background_image": "/images/library_memorial.jpg",
+        "background_music": "/audio/legacy_theme.mp3",
+        "characters_present": ["历史学家", "纪念馆馆长", "后代"],
+        "mood": "memorial"
+      }
+    },
+    {
+      "scene_index": 23,
+      "scene_type": "story",
+      "title": "永恒的图书馆",
+      "description": "故事的尾声，图书馆作为知识和智慧的象征永远存在",
+      "dify_workflow_id": "story_eternal_library_workflow",
+      "scene_config": {
+        "background_image": "/images/library_eternal.jpg",
+        "background_music": "/audio/eternal_theme.mp3",
+        "characters_present": ["叙述者", "未来的访客"],
+        "mood": "eternal",
+        "is_final": true
+      }
+    }
+  ],
+  "metadata": {
+    "total_scenes": 24,
+    "story_scenes": 16,
+    "investigation_scenes": 8,
+    "estimated_duration": "约6-8小时",
+    "difficulty": 4,
+    "themes": ["悬疑", "推理", "人性", "正义", "救赎"],
+    "created_at": "2025-07-16T12:00:00Z",
+    "version": "2.0"
+  }
+}
